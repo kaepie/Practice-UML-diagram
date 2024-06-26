@@ -7,13 +7,33 @@ public class MGame {
     private Board board;
     private ArrayList<Player> players;
 
-    public MGame(ArrayList<Player> players) {
-        this.players = players;
+    public MGame(int n) {
+        players = new ArrayList<>();
+        if (n < 2) {
+            System.out.println("There are too few players.");
+        }
+        else if(n > 8){
+            System.out.println("There are too many players.");
+        }
+        else {
+            for (int i = 1; i <= n; i++) {
+                players.add(new Player("Player " + i));
+            }
+        }
     }
 
-    public void playGame(){
-        for(roundCnt = 0; roundCnt < 10; roundCnt++){
-            playRound();
+    public void playGame(int n){
+        if (players.size() < 2) {
+            System.out.println("Players are not in the range of 2-8 people");
+        }
+        else if(players.size() > 8){
+            System.out.println("Players are not in the range of 2-8 people");
+        }
+        else{
+            for (roundCnt = 0; roundCnt < n; roundCnt++) {
+                System.out.println("---------Round "+ roundCnt + "--------");
+                playRound();
+            }
         }
     }
     private void playRound(){
